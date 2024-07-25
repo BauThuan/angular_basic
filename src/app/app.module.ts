@@ -6,6 +6,10 @@ import { HeaderComponent } from "./layouts/header/header.component";
 import { FooterComponent } from "./layouts/footer/footer.component";
 import { MaterialModule } from "../material.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HttpClientModule } from '@angular/common/http';
+import { ServicesComponent } from "./services/user.service";
+import { TableComponent } from "./layouts/table/table.component";
+
 
 @NgModule({
     declarations: [
@@ -17,9 +21,11 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
         HeaderComponent,
         FooterComponent,
         MaterialModule,
-        BrowserAnimationsModule
+        TableComponent,
+        BrowserAnimationsModule,
+        HttpClientModule
     ],
-    providers: [],
+    providers: [ServicesComponent],
     bootstrap: [AppComponent]
 })
 
