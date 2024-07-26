@@ -1,6 +1,6 @@
 import { Component, inject, DestroyRef, signal } from '@angular/core';
 import { ServicesComponent } from './services/user.service';
-import { Books } from './app.constant';
+import { Books } from './constant';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +10,9 @@ import { Books } from './app.constant';
 export class AppComponent{
   private booksData = inject(ServicesComponent) 
   private distroyRef = inject(DestroyRef)
+  isShowDialog = signal<boolean>(false)
   listBooks = signal<Books[]>([])
-   ngOnInit() {
+  ngOnInit() {
     const response = this.booksData.getBooksList()
     .subscribe(
       {
@@ -26,6 +27,10 @@ export class AppComponent{
     this.distroyRef.onDestroy(() => {
       response.unsubscribe()
     })
+  }
+  setStatusDialog(status: boolean | any) {
+    console.log('>>> chec dât', status, this.isShowDialog())
+    return this.isShowDialog.set(status) 
   }
    
 }

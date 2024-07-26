@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from '@angular/common/http';
 import { ServicesComponent } from "./services/user.service";
 import { TableComponent } from "./layouts/table/table.component";
+import { ModalComponent } from "./layouts/modal/modal.component";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { TableComponent } from "./layouts/table/table.component";
         MaterialModule,
         TableComponent,
         BrowserAnimationsModule,
-        HttpClientModule
+        HttpClientModule,
+        ModalComponent
     ],
     providers: [ServicesComponent],
     bootstrap: [AppComponent]

@@ -1,61 +1,42 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter } from '@angular/core';
 import { MaterialModule } from '../../../material.module';
-import { Books } from '../../app.constant';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+import { Books } from '../../constant';
+import { TITLE_TABLE_COLUMS, DATA_MAP_FIELDS } from '../../type';
+import { FormatDatePipe } from '../../pipes/formatDate.pipes';
+import { TextTransformPipe } from '../../pipes/textTranform.pipes';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [MaterialModule],
+  imports: [MaterialModule, FormatDatePipe, TextTransformPipe],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
 export class TableComponent {
-  displayedColumns: string[] = ['STT','Tên sách', 'Người mượn', 'trạng thái', 'Ngày mượn', 'Ngày trả'];
+  displayedColumns: string[] = [
+    TITLE_TABLE_COLUMS.ID,
+    TITLE_TABLE_COLUMS.BOOK_TITLE, 
+    TITLE_TABLE_COLUMS.BORROWER, 
+    TITLE_TABLE_COLUMS.STATUS, 
+    TITLE_TABLE_COLUMS.BORROW_DATE,
+     TITLE_TABLE_COLUMS.RETURN_DATE
+    ];
+  fieldsData: string[] = [
+    DATA_MAP_FIELDS.ID,
+    DATA_MAP_FIELDS.BOOK_TITLE,
+    DATA_MAP_FIELDS.BORROWER,
+    DATA_MAP_FIELDS.STATUS,
+    DATA_MAP_FIELDS.BORROW_DATE,
+    DATA_MAP_FIELDS.RETURN_DATE
+  ]
   columnsToDisplay: string[] = this.displayedColumns.slice();
-  data: PeriodicElement[] = ELEMENT_DATA
  @Input({required: true}) books!: any
-  addColumn() {
-    console.log(">>> check data", this.data, this.books())
-    const randomColumn = Math.floor(Math.random() * this.displayedColumns.length);
-    this.columnsToDisplay.push(this.displayedColumns[randomColumn]);
-  }
+ @Input() isShowDialog!: boolean
+  setStatus = new EventEmitter<boolean>()
 
-  removeColumn() {
-    if (this.columnsToDisplay.length) {
-      this.columnsToDisplay.pop();
-    }
-  }
-  shuffle() {
-    let currentIndex = this.columnsToDisplay.length;
-    while (0 !== currentIndex) {
-      let randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // Swap
-      let temp = this.columnsToDisplay[currentIndex];
-      this.columnsToDisplay[currentIndex] = this.columnsToDisplay[randomIndex];
-      this.columnsToDisplay[randomIndex] = temp;
-    }
+  setStatusDialog() {
+    console.log(">>> check data", this.isShowDialog)
+    this.setStatus.emit(true)
   }
 
 }

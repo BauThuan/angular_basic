@@ -1,8 +1,17 @@
 <div class="w-full flex items-center justify-center">
   <div class="w-11/12 mx-0 my-auto">
-    <app-header></app-header>
+    <app-header>
+    </app-header>
+    <app-modal 
+      *ngIf="isShowDialog" 
+      [isShowDialog]="isShowDialog()" 
+      (handleTransferStatus)="setStatusDialog($event)"
+    ></app-modal>
     <router-outlet></router-outlet>
-    <app-table [books]="listBooks"></app-table>
+    <app-table 
+      [books]="listBooks" 
+      (setStatus)="setStatusDialog($event)"
+    ></app-table>
     <app-footer></app-footer>
   </div>
 </div>
