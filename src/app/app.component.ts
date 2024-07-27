@@ -20,6 +20,7 @@ export class AppComponent{
           return this.listBooks.set(data)
         },
         complete: () => {
+          console.log(">>> checl data")
          
         }
       }
@@ -29,7 +30,9 @@ export class AppComponent{
     })
   }
   setStatusDialog(status: boolean | any) {
-    console.log('>>> chec dât', status, this.isShowDialog())
+    return this.isShowDialog.set(status) 
+  }
+  setTransferStatus(status: boolean | any) {
     return this.isShowDialog.set(status) 
   }
    

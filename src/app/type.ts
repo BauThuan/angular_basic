@@ -5,6 +5,7 @@ export const TITLE_TABLE_COLUMS = {
     STATUS: 'Trạng thái',
     BORROW_DATE: 'Ngày mượn',
     RETURN_DATE: 'Ngày trả',
+    FEATURE: 'Chức năng',
 }
 export const  DATA_MAP_FIELDS = {
     ID: 'id',
@@ -13,4 +14,5 @@ export const  DATA_MAP_FIELDS = {
     STATUS: 'status',
     BORROW_DATE: 'borrowDate',
     RETURN_DATE: 'returnDate',
+    FEATURE: 'feature',
 }

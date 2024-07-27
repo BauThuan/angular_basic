@@ -1,8 +1,49 @@
-<h2 mat-dialog-title>Delete file</h2>
+<h2 mat-dialog-title>Angular Form</h2>
 <mat-dialog-content>
-  Would you like to delete cat.jpeg?
+ Form data
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>No</button>
-  <button mat-button mat-dialog-close cdkFocusInitial (click)="onClickHandleTransferStatus()">Ok</button>
+  <button 
+    mat-button 
+    mat-dialog-close 
+    cdkFocusInitial 
+    (click)="onClickHandleTransferStatus()"
+  >Ok</button>
+  <form [formGroup]="form">
+    <p>
+        <label for="title">Title</label>
+        <input 
+          type="text" 
+          id="title" 
+          name="title" 
+          formControlName="title" 
+        />
+    </p>
+    <p>
+      <label for="name">Borrower</label>
+      <input 
+        type="text" 
+        id="borrower" 
+        name="borrower" 
+        formControlName="borrower"
+      />
+  </p>
+  <p>
+    <label for="name">Status</label>
+    <input 
+      type="text" 
+      id="status" 
+      name="status" 
+      formControlName="status"
+    />
+</p>
+
+    <button 
+      type="button" 
+      (click)="onSubmit()">Submit</button>
+    <button 
+    type="submit" 
+    (click)="onCancle()">Cancel</button>
+</form>
 </mat-dialog-actions>

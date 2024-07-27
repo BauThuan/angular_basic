@@ -1,8 +1,8 @@
 export interface Books {
-    id: string,
+    id?: string,
     bookTitle: string,
     borrower: string,
     status: boolean,
-    borrowDate: string,
-    returnDate: string,
+    borrowDate?: string,
+    returnDate?: string,
 }

@@ -1,13 +1,38 @@
-<button mat-raised-button (click)="setStatusDialog()"> Add column </button>
-
-<table mat-table [dataSource]="books()" class="mat-elevation-z8">
-  @for (column of fieldsData; track column) {
-    <ng-container [matColumnDef]="column">
-      <th mat-header-cell *matHeaderCellDef> {{column | textTransform:'uppercase'}} </th>
-      <td mat-cell *matCellDef="let element"> {{element[column] | formatDate}}</td>
-    </ng-container>
+<div>
+  <app-notification
+    [isShowMessage]="isShowMessage()"
+  ></app-notification>
+  <button 
+    mat-raised-button 
+    (click)="setStatusDialog()"
+  > Add column </button>
+  <table mat-table [dataSource]="books()" class="mat-elevation-z8">
+    @for (column of fieldsData; track column) {
+      <ng-container [matColumnDef]="column" (click)="handleGetDataIndex()">
+        <th mat-header-cell *matHeaderCellDef> {{column | textTransform:'uppercase'}} </th>
+        <td mat-cell *matCellDef="let element"> {{element[column] | formatDate}}</td>
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-button (click)="handleDeleteBookId(row.id)">Edit</button>
+        </mat-cell>
+      </ng-container>
+    }
+    <tr mat-header-row *matHeaderRowDef="fieldsData"></tr>
+    <tr mat-row *matRowDef="let row; columns: fieldsData;"></tr>
+  </table>
+  <mat-paginator 
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
+<button mat-button (click)="handleDeleteBookId('23')">Edit</button>
+<button 
+  mat-button 
+  (click)="handleUpdateBookId( {
+    bookTitle: 'hehel',
+    borrower: 'hhashdfh',
+    status: false
   }
-  <tr mat-header-row *matHeaderRowDef="fieldsData"></tr>
-  <tr mat-row *matRowDef="let row; columns: fieldsData;"></tr>
-</table>
-<p>{{books().length}}</p>
+  , '24')"
+  >update data</button>

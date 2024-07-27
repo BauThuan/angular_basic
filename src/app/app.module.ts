@@ -6,11 +6,11 @@ import { HeaderComponent } from "./layouts/header/header.component";
 import { FooterComponent } from "./layouts/footer/footer.component";
 import { MaterialModule } from "../material.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptors, withJsonpSupport } from '@angular/common/http';
 import { ServicesComponent } from "./services/user.service";
 import { TableComponent } from "./layouts/table/table.component";
 import { ModalComponent } from "./layouts/modal/modal.component";
-
+import { authInterceptor } from "./interceptors/auth.interceptor";
 
 @NgModule({
     declarations: [
@@ -27,7 +27,13 @@ import { ModalComponent } from "./layouts/modal/modal.component";
         HttpClientModule,
         ModalComponent
     ],
-    providers: [ServicesComponent],
+    providers: [
+        ServicesComponent,
+        provideHttpClient(
+            withInterceptors([authInterceptor]),
+            withJsonpSupport()
+        )
+    ],
     bootstrap: [AppComponent]
 })
 
