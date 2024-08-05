@@ -1,41 +1,36 @@
-<mat-toolbar class="shadow-md">
-    <!-- <span>TODO LIST</span> -->
-    <span class="example-spacer"></span>
-    <!-- <button routerLink="" mat-button>Home</button> -->
-    <!-- <button class="w-50 h-50" [matMenuTriggerFor]="lvl1master" mat-button>
-        <img class="w-50 h-50" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    </button> -->
-    <mat-menu #lvl1master="matMenu">
-        <button [matMenuTriggerFor]="company" mat-menu-item>Company</button>
-        <button [matMenuTriggerFor]="customer" mat-menu-item>Customer</button>
-        <button [matMenuTriggerFor]="product" mat-menu-item>Product</button>
-    </mat-menu>
 
-    <mat-menu #company="matMenu">
-        <button mat-menu-item>Term</button>
-        <button mat-menu-item>Tax</button>
-        <button mat-menu-item>Currency</button>
-    </mat-menu>
-    <mat-menu #customer="matMenu">
-        <button mat-menu-item>Type</button>
-        <button mat-menu-item>Tax</button>
-    </mat-menu>
-    <mat-menu #product="matMenu">
-        <button mat-menu-item>Category</button>
-        <button [matMenuTriggerFor]="variant" mat-menu-item>Variant</button>
-        <button mat-menu-item>UOM</button>
-    </mat-menu>
-
-    <mat-menu #variant="matMenu">
-        <button mat-menu-item>Color</button>
-        <button mat-menu-item>Size</button>
-    </mat-menu>
-
-    <!-- <button routerLink="input" mat-button>Input</button>
-    <button routerLink="autocomplete" mat-button>Autocomplete</button> -->
-    <a href="#" mat-raised-button color="accent">Đăng nhập</a>
-    <a href="#" mat-raised-button color="accent" class="ml-4">Đăng ký</a>
-    <button mat-icon-button>
-        <mat-icon matBadgeColor="accent" matBadge="15" matBadgeSize="small">notifications</mat-icon>
-    </button>
-</mat-toolbar>
+<div>
+    <mat-toolbar class="shadow-md" *ngIf="!token()" >
+        <mat-menu #lvl1master="matMenu">
+            <button [matMenuTriggerFor]="company" mat-menu-item>Company</button>
+            <button [matMenuTriggerFor]="customer" mat-menu-item>Customer</button>
+            <button [matMenuTriggerFor]="product" mat-menu-item>Product</button>
+        </mat-menu>
+    
+        <mat-menu #company="matMenu">
+            <button mat-menu-item>Term</button>
+            <button mat-menu-item>Tax</button>
+            <button mat-menu-item>Currency</button>
+        </mat-menu>
+        <mat-menu #customer="matMenu">
+            <button mat-menu-item>Type</button>
+            <button mat-menu-item>Tax</button>
+        </mat-menu>
+        <mat-menu #product="matMenu">
+            <button mat-menu-item>Category</button>
+            <button [matMenuTriggerFor]="variant" mat-menu-item>Variant</button>
+            <button mat-menu-item>UOM</button>
+        </mat-menu>
+    
+        <mat-menu #variant="matMenu">
+            <button mat-menu-item>Color</button>
+            <button mat-menu-item>Size</button>
+        </mat-menu>
+        <a mat-raised-button color="accent" class="ml-4">Đăng Ký</a>
+        <a mat-raised-button color="accent" class="ml-4">Đăng Nhập</a>
+        <button mat-icon-button>
+            <mat-icon matBadgeColor="accent" matBadge="15" matBadgeSize="small">notifications</mat-icon>
+        </button>
+    </mat-toolbar>
+    <img *ngIf="token()" style="width: 50px; height: 50px;" src='https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp' />
+</div>

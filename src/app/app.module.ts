@@ -7,14 +7,18 @@ import { FooterComponent } from "./layouts/footer/footer.component";
 import { MaterialModule } from "../material.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule, provideHttpClient, withInterceptors, withJsonpSupport } from '@angular/common/http';
-import { ServicesComponent } from "./services/user.service";
+import { ServicesComponent } from "./services/todo.service";
 import { TableComponent } from "./layouts/table/table.component";
 import { ModalComponent } from "./layouts/modal/modal.component";
 import { authInterceptor } from "./interceptors/auth.interceptor";
+import { TodolistComponent } from "./screens/todolist/todolist.component";
+import { HomeComponent } from "./screens/home/home.component";
 
 @NgModule({
     declarations: [
         AppComponent, 
+        TodolistComponent,
+        HomeComponent
     ],
     imports: [
         BrowserModule,
@@ -29,10 +33,10 @@ import { authInterceptor } from "./interceptors/auth.interceptor";
     ],
     providers: [
         ServicesComponent,
-        provideHttpClient(
-            withInterceptors([authInterceptor]),
-            withJsonpSupport()
-        )
+        // provideHttpClient(
+        //     withInterceptors([authInterceptor]),
+        //     withJsonpSupport()
+        // )
     ],
     bootstrap: [AppComponent]
 })

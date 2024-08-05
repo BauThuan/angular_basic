@@ -1,10 +1,10 @@
 import { Component, Input, Output, EventEmitter, inject, signal } from '@angular/core';
 import { MaterialModule } from '../../../material.module';
-import { Books } from '../../constant';
-import { TITLE_TABLE_COLUMS, DATA_MAP_FIELDS } from '../../type';
+import { Books } from '../../app.type';
+import { TITLE_TABLE_COLUMS, DATA_MAP_FIELDS } from '../../app.constant';
 import { FormatDatePipe } from '../../pipes/formatDate.pipes';
 import { TextTransformPipe } from '../../pipes/textTranform.pipes';
-import { ServicesComponent } from '../../services/user.service';
+import { ServicesComponent } from '../../services/todo.service';
 import { NotificationComponent } from '../../components/notification/notification.component';
 
 @Component({
@@ -85,6 +85,20 @@ export class TableComponent {
         console.log(error)
       }
     })
+  }
+  handleUpdateDataBookId(id: string) {
+    this.booksService.postBooks(id).subscribe({
+      next: (data) => {
+        console.log(">>> check data", data)
+      },
+      error: (error) => {
+        console.log(`Error Post Book ${error }`)
+      },
+      complete: () => {
+        console.log("Tao moi book thanh cong")
+      }
+    })
+
   }
 }
 

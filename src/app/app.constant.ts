@@ -16,3 +16,9 @@ export const  DATA_MAP_FIELDS = {
     RETURN_DATE: 'returnDate',
     FEATURE: 'feature',
 }
+export const LIST_ROUTER = {
+    LOGIN: 'login',
+    SIGN_UP: 'sign-up',
+    TODO_LIST: 'todo-list',
+    HOME: 'home',
+}

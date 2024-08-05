@@ -1,9 +1,9 @@
-import { Component, Input, EventEmitter, Output, signal, inject, DestroyRef } from '@angular/core';
+import { Component, Input, EventEmitter, Output, inject } from '@angular/core';
 import { MaterialModule } from '../../../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Books } from '../../constant';
-import { ServicesComponent } from '../../services/user.service';
+import { Books } from '../../app.type';
+import { ServicesComponent } from '../../services/todo.service';
 @Component({
   selector: 'app-modal',
   standalone: true,
@@ -17,8 +17,6 @@ export class ModalComponent {
   @Output() handleTransferStatus = new EventEmitter<boolean>()
   @Output() formBookData = new EventEmitter<Books>()
   private booksData = inject(ServicesComponent) 
-  private distroyRef = inject(DestroyRef)
-
 
   constructor(private dataForm: FormBuilder){
     this.form = this.dataForm.group({
