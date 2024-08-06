@@ -24,6 +24,4 @@ export class SignupComponent {
     this.isSignUp = data
     this.userService.loginUser(dataLogin)
  }
-
-
 }
