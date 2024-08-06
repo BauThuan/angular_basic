@@ -1,6 +1,7 @@
 import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { ServicesComponent } from '../../services/todo.service';
 import { Books } from '../../app.type';
+import { PropsDatatService } from '../../services/propsData.service';
 
 @Component({
   selector: 'app-todolist',
@@ -12,7 +13,12 @@ export class TodolistComponent {
   private distroyRef = inject(DestroyRef)
   isShowDialog = signal<boolean>(false)
   listBooks = signal<Books[]>([])
+  data: string = ''
+  constructor(private props: PropsDatatService){}
   ngOnInit() {
+    this.props.data.subscribe(item => {
+      this.data = item
+    })
     const response = this.booksData.getBooksList()
     .subscribe(
       {
@@ -34,6 +40,9 @@ export class TodolistComponent {
   }
   setTransferStatus(status: boolean | any) {
     return this.isShowDialog.set(status) 
+  }
+  resetData(){
+    this.props.updateData('Data reset');
   }
    
 }

@@ -13,7 +13,8 @@
         [isShowDialog]="isShowDialog()" 
         (setStatus)="setTransferStatus($event)"
       ></app-table>
-      <button routerLink="/home">HOME</button>
+      <button (click)="resetData()">HOME</button>
+      <p>{{data}}</p>
       <app-footer></app-footer>
     </div>
   </div>

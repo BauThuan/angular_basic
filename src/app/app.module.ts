@@ -14,11 +14,12 @@ import { authInterceptor } from "./interceptors/auth.interceptor";
 import { TodolistComponent } from "./screens/todolist/todolist.component";
 import { HomeComponent } from "./screens/home/home.component";
 
+
 @NgModule({
     declarations: [
         AppComponent, 
         TodolistComponent,
-        HomeComponent
+        HomeComponent,
     ],
     imports: [
         BrowserModule,
@@ -30,7 +31,7 @@ import { HomeComponent } from "./screens/home/home.component";
         BrowserAnimationsModule,
         HttpClientModule,
         ModalComponent
-    ],
+        ],
     providers: [
         ServicesComponent,
         // provideHttpClient(

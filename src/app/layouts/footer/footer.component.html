@@ -1,1 +1,16 @@
+<form>
+    <label for="title">Title</label>
+    <input 
+      type="text" 
+      id="title" 
+      name="title" 
+      formControlName="title" 
+    />
+    <button 
+      type="button" 
+      (click)="sendDataToParent()"
+      >Submit</button>
+</form>
+<p>{{data}}</p>
 <p>footer works!</p>
+
