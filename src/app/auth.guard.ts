@@ -1,6 +1,21 @@
-import { CanActivateFn } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
-export const authGuard: CanActivateFn = (route, state) => {
-  const token = localStorage.getItem('jwt');
-  return !!(token);
-};
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthGuard implements CanActivate {
+  constructor( private router: Router) {}
+  token: string = ''
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): boolean {
+    if (this.token) {
+      return true; 
+    } else {
+      console.log(">>> check data", next, state)
+      this.router.navigate(['/login']);
+      return false;
+    }
+  }
+}

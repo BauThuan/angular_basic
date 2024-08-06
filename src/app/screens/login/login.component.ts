@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
@@ -9,7 +9,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf,                                                                  ],
+  imports: [ReactiveFormsModule, NgIf, TooltipModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -29,12 +29,18 @@ export class LoginComponent {
     "identifier": "thuan56789@gmail.com",
     "password": "password"
     }
+  constructor(private activatedRoute: ActivatedRoute){
+    
+  }
+  
 
    ngOnInit(){
+    this.activatedRoute.data.subscribe(({ todo }) => {
+      console.log(">>> check todo", todo);
+    })
     this.userService.loginUser(this.fakeData).subscribe({
     next:(data) => {
       localStorage.setItem('jwt', data.jwt)
-      this.router.navigate(['/heroes']);
     },
     error: (error) =>  console.log(`Error ${error}`),
     complete: () => console.log('Login Success !')

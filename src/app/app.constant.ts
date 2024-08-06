@@ -21,4 +21,6 @@ export const LIST_ROUTER = {
     SIGN_UP: 'sign-up',
     TODO_LIST: 'todo-list',
     HOME: 'home',
+    DETAILS: '/details',
+    NOT_FOUND: '**'
 }

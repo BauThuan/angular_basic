@@ -21,6 +21,15 @@ export class ServicesComponent {
       })
     );
   }
+  getBooksIdList(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
+      map(response => response),
+      catchError(error => {
+        console.error('Error fetching books:', error);
+        return throwError(() => new Error('Error fetching books'));
+      })
+    );
+  }
   postBooks(data: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, data).pipe(
       map(response => response),

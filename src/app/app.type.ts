@@ -4,5 +4,9 @@ export interface Books {
     borrower: string,
     status: boolean,
     borrowDate?: string,
-    returnDate?: string,
+    returcnDate?: string,
+}
+export interface ConfigDataLogin  {
+    email?: string,
+    password?: string
 }
