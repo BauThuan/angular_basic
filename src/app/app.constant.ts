@@ -22,5 +22,6 @@ export const LIST_ROUTER = {
     TODO_LIST: 'todo-list',
     HOME: 'home',
     DETAILS: '/details',
+    PRODUCT_LIST: 'product-list',
     NOT_FOUND: '**'
 }

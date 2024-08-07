@@ -8,12 +8,14 @@ import { AuthGuard } from './auth.guard';
 import { LIST_ROUTER } from './app.constant';
 import { NotfoundComponent } from './screens/notfound/notfound.component';
 import { UserResolver } from './resolvers/user.resolver';
+import { ProductListComponent } from './screens/product-list/product-list.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: LIST_ROUTER.LOGIN,  pathMatch: 'full' },
     {
         path: LIST_ROUTER.LOGIN,
         component: LoginComponent,
+        // bug(resolve) logout không redirect tới login
         resolve: {
             todo : UserResolver
         }
@@ -24,7 +26,9 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         children: [
             { path: LIST_ROUTER.TODO_LIST, component: TodolistComponent },
-            { path: LIST_ROUTER.HOME, component: HomeComponent }
+            { path: LIST_ROUTER.HOME, component: HomeComponent },
+            {path: LIST_ROUTER.PRODUCT_LIST, component: ProductListComponent},
+
         ]
     },
     {path: LIST_ROUTER.NOT_FOUND, component: NotfoundComponent},

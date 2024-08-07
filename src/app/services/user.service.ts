@@ -9,7 +9,7 @@ import { catchError, map } from 'rxjs/operators';
     providedIn: 'root'
 })
 export class UserService {
-    private url = `${environment.domain}/auth/local`
+    private url = `${environment.apiUrl}/auth/local`
     private http = inject(HttpClient)
     loginUser(data: any): Observable<any> {
         return this.http.post<any>(this.url, data).pipe(

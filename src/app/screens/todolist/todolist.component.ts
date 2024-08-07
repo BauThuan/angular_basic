@@ -20,10 +20,7 @@ export class TodolistComponent {
     private router: Router
   ){}
   ngOnInit() {
-    this.props.data.subscribe(item => {
-      this.data = item
-    })
-    const response = this.booksData.getBooksList()
+  this.booksData.getBooksList()
     .subscribe(
       {
         next: (data) => {
@@ -34,9 +31,6 @@ export class TodolistComponent {
         }
       }
     );
-    this.distroyRef.onDestroy(() => {
-      response.unsubscribe()
-    })
   }
   setStatusDialog(status: boolean | any) {
     return this.isShowDialog.set(status) 

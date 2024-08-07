@@ -1,17 +1,19 @@
 <div class="form-container">
     <form class="form-content" [formGroup]="form" (ngSubmit)="handleUserLogin()">
         <h2>Login</h2>
+        <p>Let’s create your account and  Shop like a pro and save money.</p>
+        <img src="../../assets/logo.svg"/>
         <div>
           <label for="email">Email:</label>
           <input id="email" type="email" formControlName="email">
-          <p *ngIf="isShowRequired()">
+          <p *ngIf="FormInvalid('email')">
             Email is required
           </p>
         </div>
         <div>
           <label for="password">Password:</label>
           <input id="password" formControlName="password">
-          <p *ngIf="isShowRequired()">
+          <p *ngIf="FormInvalid('password')">
             Password is required
           </p>
         </div>
