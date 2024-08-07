@@ -6,7 +6,14 @@ export interface Books {
     borrowDate?: string,
     returcnDate?: string,
 }
-export interface ConfigDataLogin  {
-    email?: string,
-    password?: string
+export interface Foramt_Login  {
+    identifier: string,
+    password: string
+}
+
+export interface Format_SignUp {
+    username: string,
+    email: string,
+    password: string,
+    role: number
 }

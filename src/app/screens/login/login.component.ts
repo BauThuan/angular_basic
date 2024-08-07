@@ -1,9 +1,11 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { DataFormatService } from '../../shared/data-format.service';
+import { LIST_ROUTER } from '../../app.constant';
 
 
 @Component({
@@ -14,8 +16,6 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  private userService = inject(UserService)
-  private router: Router | any
   form = new FormGroup({
     email: new FormControl('',{
       validators: [Validators.email, Validators.required]
@@ -25,31 +25,34 @@ export class LoginComponent {
     })
   })
   isShowRequired = signal<boolean>(false)
-  fakeData = {
-    "identifier": "thuan56789@gmail.com",
-    "password": "password"
-    }
-  constructor(private activatedRoute: ActivatedRoute){
-    
+  token = signal<string | null>(localStorage.getItem('jwt'))
+  constructor(
+    private user: UserService,
+    private format: DataFormatService,
+    private router: Router,
+  ){}
+  ngOnInit(){
+    if(this.token()){
+      return this.router.navigate([`/${LIST_ROUTER.TODO_LIST}`]);
+    } 
+    return this.router.navigate([`/${LIST_ROUTER.LOGIN}`]);;
   }
-  
 
-   ngOnInit(){
-    this.activatedRoute.data.subscribe(({ todo }) => {
-      console.log(">>> check todo", todo);
-    })
-    this.userService.loginUser(this.fakeData).subscribe({
-    next:(data) => {
-      localStorage.setItem('jwt', data.jwt)
-    },
-    error: (error) =>  console.log(`Error ${error}`),
-    complete: () => console.log('Login Success !')
-  })
-  }
-  onSubmit(){
-    console.log(">>> cekc data", this.form.value.email);
-    console.log(">>> cekc data", this.form.value.password);
-    console.log(">>> cekc data", this.form.controls.email);
-    this.form.reset()
+  handleUserLogin() {
+    const formattedData = this.format.handleFormatDataLogin(
+      this.form.value.email, 
+      this.form.value.password
+    );
+    this.user.loginUser(formattedData).subscribe({
+      next: data => {
+        console.log('>>> Check data', data);
+        localStorage.setItem('jwt', data.jwt)
+      },
+      error: err => console.log(`Error ${err}`),
+      complete: () => {
+        this.router.navigate([`/${LIST_ROUTER.TODO_LIST}`]);
+        console.log(`Login Success !`);
+      },
+    });
   }
 }

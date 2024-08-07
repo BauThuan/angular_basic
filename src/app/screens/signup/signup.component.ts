@@ -1,27 +1,44 @@
-import { inject, input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Component, signal } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { PropsDatatService } from '../../services/propsData.service';
-import { type ConfigDataLogin } from '../../app.type';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
+import { DataFormatService } from '../../shared/data-format.service';
+import { LIST_ROUTER } from '../../app.constant';
 @Component({
   selector: 'app-signup',
+  standalone: true,
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
 
 export class SignupComponent {
-  isSignUp = signal<string>('')
-  email = input<string>('')
-  password = input<string>('')
-  private userService = inject(UserService)
-  private props = inject(PropsDatatService)
-  
-  isShowModalSignUp(data: any){
-    let dataLogin: ConfigDataLogin | any = {
-      email:this.email,
-      password: this.password
-    }
-    this.isSignUp = data
-    this.userService.loginUser(dataLogin)
- }
+  form = new FormGroup({
+    username: new FormControl(''),
+    email: new FormControl(''),
+    password: new FormControl('')
+  })
+  isShowRequired = signal<boolean>(false)
+  constructor(
+    private user : UserService,
+    private format: DataFormatService,
+    private router: Router
+  ){}
+  handleSignUpUser(){
+    const formatDataSignUp = this.format.handleFormatDataSignUp(
+      this.form.value.username,
+      this.form.value.email,
+      this.form.value.password
+    )
+    this.user.SignUpUser(formatDataSignUp).subscribe({
+      next: data => console.log(data),
+      error: err => console.log(err),
+      complete: () => {
+        this.router.navigate([`/${LIST_ROUTER.TODO_LIST}`])
+        console.log(`SignUp Success!`)
+      }
+    })
+  }  
+ 
 }

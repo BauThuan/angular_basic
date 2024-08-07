@@ -1,5 +1,5 @@
 <div class="form-container">
-    <form class="form-content" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form class="form-content" [formGroup]="form" (ngSubmit)="handleUserLogin()">
         <h2>Login</h2>
         <div>
           <label for="email">Email:</label>
@@ -17,7 +17,10 @@
         </div>
         <button
         tooltip="button tooltip"
-        class="btn btn-primary" type="submit">Login</button>
+        class="btn btn-primary" 
+        type="submit"
+        >Login</button>
+        <button routerLink="/sign-up">Register</button>
     </form>
 </div>
   

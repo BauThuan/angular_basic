@@ -11,7 +11,6 @@ import { catchError, map } from 'rxjs/operators';
 export class UserService {
     private url = `${environment.domain}/auth/local`
     private http = inject(HttpClient)
-
     loginUser(data: any): Observable<any> {
         return this.http.post<any>(this.url, data).pipe(
           map(response => response),
@@ -20,6 +19,14 @@ export class UserService {
             return throwError(() => new Error(`Error ${error}`));
           })
         );
+    }
+    SignUpUser(data: any){
+      return this.http.post<any>(`${this.url}/register`, data).pipe(
+        map(response => response),
+        catchError(error => {
+          return throwError(() => new Error(`Error ${error}`)) 
+        })
+      )
     }
 
 }

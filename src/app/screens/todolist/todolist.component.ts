@@ -2,6 +2,7 @@ import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { ServicesComponent } from '../../services/todo.service';
 import { Books } from '../../app.type';
 import { PropsDatatService } from '../../services/propsData.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todolist',
@@ -14,7 +15,10 @@ export class TodolistComponent {
   isShowDialog = signal<boolean>(false)
   listBooks = signal<Books[]>([])
   data: string = ''
-  constructor(private props: PropsDatatService){}
+  constructor(
+    private props: PropsDatatService,
+    private router: Router
+  ){}
   ngOnInit() {
     this.props.data.subscribe(item => {
       this.data = item
@@ -26,8 +30,7 @@ export class TodolistComponent {
           return this.listBooks.set(data)
         },
         complete: () => {
-          console.log(">>> checl data")
-         
+          console.log("Get Data Success !") 
         }
       }
     );
