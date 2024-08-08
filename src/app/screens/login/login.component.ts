@@ -43,13 +43,12 @@ export class LoginComponent {
   }
   ngOnInit(){
     if(this.token()){
-      return this.router.navigate([`/${LIST_ROUTER.TODO_LIST}`]);
+      return this.router.navigate([`/${LIST_ROUTER.PRODUCT_LIST}`]);
     } 
     return this.router.navigate([`/${LIST_ROUTER.LOGIN}`]);;
   }
 
   handleUserLogin() {
-    console.log('>>> chek data', this.form)
     const formattedData = this.format.handleFormatDataLogin(
       this.form.value.email, 
       this.form.value.password
@@ -60,8 +59,8 @@ export class LoginComponent {
       },
       error: err => console.log(`Error ${err}`),
       complete: () => {
-        this.router.navigate([`/${LIST_ROUTER.TODO_LIST}`]);
-        console.log(`Login Success !`);
+        console.log(`Login Success !`)
+        this.router.navigate([`/${LIST_ROUTER.PRODUCT_LIST}`]);
       },
     });
   }

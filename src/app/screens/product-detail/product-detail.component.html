@@ -1,1 +1,13 @@
-<p>product-detail works!</p>
+<div>
+    <img
+        class="card-img-top w-40 h-40 object-fit-cover" 
+        src="{{imagePath + productDetail.attributes.image.data[0].attributes.url}}" alt="Card image cap">
+    <div class="card-body">
+        <p class="card-title">{{productDetail.attributes.name}}</p>
+        <p class="card-text">{{productDetail.attributes.description}}</p>
+        <p class="card-text">Price: {{productDetail.attributes.price}}</p>
+        <p class="card-text">Quantity: {{productDetail.attributes.quantityAvailable}}</p>
+        <p class="card-text">Ram: {{productDetail.attributes.ram}}</p>
+        <p class="card-text">Slug: {{productDetail.attributes.slug}}</p>
+    </div>
+</div>

@@ -3,21 +3,21 @@
         <h2>Login</h2>
         <div>
           <label for="email">UserName:</label>
-          <input id="username" type="username" formControlName="username">
+          <input id="username" type="username" formControlName="username" required>
           <p *ngIf="isShowRequired()">
             User Name is required
           </p>
         </div>
         <div>
             <label for="email">Email:</label>
-            <input id="email" formControlName="email">
+            <input id="email" formControlName="email" required>
             <p *ngIf="isShowRequired()">
               Email is required
             </p>
           </div>
         <div>
           <label for="password">Password:</label>
-          <input id="password" formControlName="password">
+          <input id="password" formControlName="password" required>
           <p *ngIf="isShowRequired()">
             Password is required
           </p>

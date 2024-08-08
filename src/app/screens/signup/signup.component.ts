@@ -35,7 +35,7 @@ export class SignupComponent {
       next: data => console.log(data),
       error: err => console.log(err),
       complete: () => {
-        this.router.navigate([`/${LIST_ROUTER.TODO_LIST}`])
+        this.router.navigate([`/${LIST_ROUTER.PRODUCT_LIST}`])
         console.log(`SignUp Success!`)
       }
     })

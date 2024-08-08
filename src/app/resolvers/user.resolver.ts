@@ -2,9 +2,12 @@ import { Injectable, signal } from "@angular/core";
 import { ActivatedRoute, ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from "@angular/router";
 import { ServicesComponent } from "../services/todo.service";
 import { ProductService } from "../services/product.service";
-import { Observable } from "rxjs";
-import { LIST_ROUTER } from "../app.constant";
+import { Observable, throwError } from "rxjs";
+import { catchError, map } from 'rxjs/operators';
 
+// Truyền data cùng với router trước khi screen được load xong
+// Sang bên màn kia sẽ không phải mất thời gian call api từ trước nữa,
+// Mà có sẵn data để render ra ngoài
 @Injectable({ providedIn: 'root' })
 export class ProductDetailResolver implements Resolve<any> {
   id: any = ''
@@ -18,10 +21,17 @@ export class ProductDetailResolver implements Resolve<any> {
       this.id = params.get('id');
     });
   }
+// call api trước khi load page
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> {
-    return this.service.getListProduct();
+    const id = route.paramMap.get('id');
+    return this.service.getListProduct().pipe(
+      map(products => products.data.filter((product: any) => product.id === Number(id))),
+      catchError((error) => {
+        return throwError(() => new Error(`Error ${error}`))
+      })
+    );;
   }
 }

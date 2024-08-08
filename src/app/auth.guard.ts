@@ -12,10 +12,8 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
     if (this.token()) {
-      console.log(">> chay vao day");
       return true; 
     } else {
-      console.log(">> chay vao day");
       this.router.navigate([`/${LIST_ROUTER.LOGIN}`]);
       return false;
     }
