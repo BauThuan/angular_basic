@@ -56,11 +56,14 @@ export class LoginComponent {
     this.user.loginUser(formattedData).subscribe({
       next: data => {
         localStorage.setItem('jwt', data.jwt)
+        if(data){
+          this.router.navigate([`/${LIST_ROUTER.PRODUCT_LIST}`]);
+        }
       },
       error: err => console.log(`Error ${err}`),
       complete: () => {
-        console.log(`Login Success !`)
-        this.router.navigate([`/${LIST_ROUTER.PRODUCT_LIST}`]);
+        window.location.reload();
+        return this.router.navigate([`/${LIST_ROUTER.PRODUCT_LIST}`]);
       },
     });
   }
