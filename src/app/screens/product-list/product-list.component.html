@@ -1,2 +1,16 @@
-<p>product-list works!</p>
-<button (click)="handleGetProductBySlug()">Get data api</button>
+<div class="container">
+    <div class="row">
+        <div *ngFor="let item of listProducts" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card" style="width: 100%;">
+                <img
+                    class="card-img-top h-40 object-fit-cover" 
+                    src="{{imagePath + item.attributes.image.data[0].attributes.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-title text-truncate">{{item.attributes.name}}</p>
+                    <p class="card-text text-truncate">{{item.attributes.description}}</p>
+                    <a [routerLink]="['/product-detail/' + item.id]" class="btn btn-primary">Goto Card Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

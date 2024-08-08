@@ -23,5 +23,6 @@ export const LIST_ROUTER = {
     HOME: 'home',
     DETAILS: '/details',
     PRODUCT_LIST: 'product-list',
+    PRODUCT_DETAIL: 'product-detail/:id',
     NOT_FOUND: '**'
 }

@@ -11,5 +11,4 @@ export class PropsDatatService {
     updateData(newData: string) {
       this.dataSubject.next(newData);
     }
-
 }

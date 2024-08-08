@@ -6,9 +6,6 @@ import { NgIf } from '@angular/common';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { DataFormatService } from '../../shared/data-format.service';
 import { LIST_ROUTER } from '../../app.constant';
-interface MyFormControls {
-  [key: string]: FormControl<any>;
-}
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -32,27 +29,27 @@ export class LoginComponent {
     private format: DataFormatService,
     private router: Router,
   ){}
-  FormInvalid(field: string){
-    const control = this.form.controls as MyFormControls;
-    return control[field]?.touched && 
-           control[field]?.dirty &&
-           control[field]?.invalid
-
+  get EmailInvalid(){
+    const control = this.form.controls
+    return control.email.touched &&
+           control.email.dirty &&
+           control.email.invalid
+  }
+  get PasswordInvalid(){
+    const control = this.form.controls
+    return control.password.touched &&
+           control.password.dirty &&
+           control.password.invalid
   }
   ngOnInit(){
     if(this.token()){
       return this.router.navigate([`/${LIST_ROUTER.TODO_LIST}`]);
     } 
-    console.log(">>. chay vao");
     return this.router.navigate([`/${LIST_ROUTER.LOGIN}`]);;
   }
 
   handleUserLogin() {
-    console.log('this is form', this.form.controls.email.touched, this.form.controls.email.dirty, this.form.controls.email.invalid );
-    console.log('>>> chek data', 
-        this.form.value.email,
-        this.form.value.password
-      )
+    console.log('>>> chek data', this.form)
     const formattedData = this.format.handleFormatDataLogin(
       this.form.value.email, 
       this.form.value.password

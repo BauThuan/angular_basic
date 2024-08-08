@@ -1,28 +1,36 @@
-<div class="form-container">
-    <form class="form-content" [formGroup]="form" (ngSubmit)="handleUserLogin()">
-        <h2>Login</h2>
-        <p>Let’s create your account and  Shop like a pro and save money.</p>
-        <img src="../../assets/logo.svg"/>
-        <div>
-          <label for="email">Email:</label>
-          <input id="email" type="email" formControlName="email">
-          <p *ngIf="FormInvalid('email')">
-            Email is required
-          </p>
-        </div>
-        <div>
-          <label for="password">Password:</label>
-          <input id="password" formControlName="password">
-          <p *ngIf="FormInvalid('password')">
-            Password is required
-          </p>
-        </div>
-        <button
-        tooltip="button tooltip"
-        class="btn btn-primary" 
-        type="submit"
-        >Login</button>
-        <button routerLink="/sign-up">Register</button>
+<div class="w-100 vh-100 d-flex my-0 mx-auto align-items-center justify-content-center flex-column">
+    <form class="form-content border p-4 rounded" [formGroup]="form" (ngSubmit)="handleUserLogin()">
+      <h2 class="text-center">Login</h2>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email</label>
+        <input
+          required
+          id="email" type="email" 
+          formControlName="email" 
+          class="form-control shadow-none has-validation" 
+          id="exampleInputEmail1" 
+          placeholder="Enter email"
+        >
+        <small *ngIf="EmailInvalid" id="emailHelp" class="form-text text-muted">
+          Email is required
+        </small>
+      </div>
+      <div class="form-group mt-3">
+        <label for="exampleInputPassword1">Password</label>
+        <input
+          required
+          id="password" 
+          formControlName="password" 
+          class="form-control shadow-none  has-validation" 
+          id="exampleInputPassword1" 
+          placeholder="Password"
+         >
+         <small *ngIf="PasswordInvalid" id="emailHelp" class="form-text text-muted">
+          Password is required
+        </small>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </form>
 </div>
+
   

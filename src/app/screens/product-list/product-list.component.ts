@@ -1,19 +1,28 @@
 import { Component, signal } from '@angular/core';
 import { ProductService } from '../../services/product.service';
+import { NgFor } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
+import { environment } from '../../environments/apiUrl.environments';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [],
+  imports: [NgFor, RouterModule],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
 export class ProductListComponent {
-  listProducts = signal<any>([])
-  constructor(private product: ProductService){}
+  listProducts: any | null | undefined = []
+  imagePath = environment.imageUrl
+  constructor(
+    private product: ProductService,
+    private router: Router
+  ){}
   ngOnInit(){
     this.product.getListProduct().subscribe({
-      next: data =>  console.log(data),
+      next: data =>  {
+        this.listProducts = data.data
+      },
       error: (err) => console.log(`Error ${err}`),
       complete: () => console.log(`Get list product success !`) 
     })
@@ -49,5 +58,8 @@ export class ProductListComponent {
       error: error => console.log(`Error ${error}`),
       complete: () => console.log('get prodcut by brand success !')
     })
+  }
+  handleNavigateProductDetail(id: number){
+      this.router.navigate([`product-detail/${id}`])
   }
 }
