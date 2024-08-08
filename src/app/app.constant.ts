@@ -24,5 +24,7 @@ export const LIST_ROUTER = {
     DETAILS: '/details',
     PRODUCT_LIST: 'product-list',
     PRODUCT_DETAIL: 'product-detail/:id',
+    POST: 'post',
+    POST_DETAIL: 'post-detail/:id',
     NOT_FOUND: '**'
 }

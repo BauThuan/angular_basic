@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+        <div *ngFor="let item of listPost" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card" style="width: 100%;">
+                <img
+                    class="card-img-top h-40 object-fit-cover" 
+                    src="{{imagePath + item.attributes.image.data.attributes.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-title text-truncate">{{item.attributes.title}}</p>
+                    <p class="card-text text-truncate">{{item.attributes.content}}</p>
+                    <a [routerLink]="['/post-detail/' + item.id]" class="btn btn-primary">Goto Post Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

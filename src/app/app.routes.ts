@@ -10,6 +10,9 @@ import { NotfoundComponent } from './screens/notfound/notfound.component';
 import { ProductDetailResolver } from './resolvers/user.resolver';
 import { ProductListComponent } from './screens/product-list/product-list.component';
 import { ProductDetailComponent } from './screens/product-detail/product-detail.component';
+import { PostComponent } from './screens/post/post.component';
+import { PostDetailComponent } from './screens/post-detail/post-detail.component';
+import { PostDetailResolver } from './resolvers/post.resolver';
 
 export const routes: Routes = [
     {path: '', redirectTo: LIST_ROUTER.LOGIN,  pathMatch: 'full' },
@@ -31,7 +34,13 @@ export const routes: Routes = [
                 },
                 component: ProductDetailComponent
             },
-
+            {   path: LIST_ROUTER.POST, component: PostComponent},
+            {   path: LIST_ROUTER.POST_DETAIL,
+                resolve: {
+                    detailPost : PostDetailResolver
+                },
+                component: PostDetailComponent
+            },
         ]
     },
     {path: LIST_ROUTER.NOT_FOUND, component: NotfoundComponent},

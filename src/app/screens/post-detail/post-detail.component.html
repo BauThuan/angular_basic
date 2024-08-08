@@ -1,0 +1,11 @@
+<div>
+    <img
+        class="card-img-top w-40 h-40 object-fit-cover" 
+        src="{{imagePath + detailPost.attributes.image.data.attributes.url}}" alt="Card image cap"
+    >
+    <div class="card-body">
+        <p class="card-title">{{detailPost.attributes.title}}</p>
+        <p class="card-text">{{detailPost.attributes.content}}</p>
+        <p class="card-text">Slug: {{detailPost.attributes.slug}}</p>
+    </div>
+</div>
