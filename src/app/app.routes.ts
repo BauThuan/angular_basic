@@ -13,6 +13,10 @@ import { ProductDetailComponent } from './screens/product-detail/product-detail.
 import { PostComponent } from './screens/post/post.component';
 import { PostDetailComponent } from './screens/post-detail/post-detail.component';
 import { PostDetailResolver } from './resolvers/post.resolver';
+import { CategoryComponent } from './screens/category/category.component';
+import { BrandComponent } from './screens/brand/brand.component';
+import { OrderComponent } from './screens/order/order.component';
+import { LayoutComponent } from './screens/layout/layout.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: LIST_ROUTER.LOGIN,  pathMatch: 'full' },
@@ -24,6 +28,7 @@ export const routes: Routes = [
     {
         path: '',
         canActivate: [AuthGuard],
+        component: LayoutComponent,
         children: [
             {   path: LIST_ROUTER.TODO_LIST, component: TodolistComponent },
             {   path: LIST_ROUTER.HOME, component: HomeComponent },
@@ -41,12 +46,16 @@ export const routes: Routes = [
                 },
                 component: PostDetailComponent
             },
+            {   path: LIST_ROUTER.CATEGORY, component: CategoryComponent},
+            {   path: LIST_ROUTER.BRAND, component: BrandComponent},
+            {   path: LIST_ROUTER.ORDER, component: OrderComponent},
+
         ]
     },
     {path: LIST_ROUTER.NOT_FOUND, component: NotfoundComponent},
 ];
 
-@NgModule({
+@NgModule({ 
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })

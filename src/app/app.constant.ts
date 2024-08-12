@@ -26,5 +26,9 @@ export const LIST_ROUTER = {
     PRODUCT_DETAIL: 'product-detail/:id',
     POST: 'post',
     POST_DETAIL: 'post-detail/:id',
+    CATEGORY: 'category',
+    CATEGORY_DETAIL: 'category-detail/:id',
+    BRAND: 'brand',
+    ORDER: 'order',
     NOT_FOUND: '**'
 }

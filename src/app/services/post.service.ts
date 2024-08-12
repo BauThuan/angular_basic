@@ -25,7 +25,7 @@ export class PostServices {
         )
     }
     searchPostByContent(content: string){
-        return this.http.get<any>(`${this.url}&&filters[content][$contains]=${content}`).pipe(
+        return this.http.get<any>(`${this.url}&filters[content][$contains]=${content}`).pipe(
             map(responsive => responsive),
             catchError((err) => {
                 return throwError(() => new Error(`Error ${err}`))

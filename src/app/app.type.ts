@@ -17,3 +17,11 @@ export interface Format_SignUp {
     password: string,
     role: number
 }
+export interface Payload_Order {
+        address: string,
+        quantity: number,
+        cost: string,
+        status: string,
+        date: string,
+        idProduct: string[]
+}

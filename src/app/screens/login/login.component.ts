@@ -24,6 +24,7 @@ export class LoginComponent {
   })
   isShowRequired = signal<boolean>(false)
   token = signal<string | null>(localStorage.getItem('jwt'))
+  imagePath: string = 'assets/images/logo.svg'
   constructor(
     private user: UserService,
     private format: DataFormatService,

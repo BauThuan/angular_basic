@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { type Payload_Order } from '../app.type';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,13 @@ export class DataFormatService {
         email,
         password,
         role: 3,
+      }
+    }
+    handleFormatDataOrder(payload: Payload_Order){
+      return {
+        data: {
+          payload
+        }
       }
     }
 }
